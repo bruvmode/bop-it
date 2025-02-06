@@ -10,7 +10,7 @@ basic.forever(function () {
             # . . . #
             `)
         for (let index = 0; index < 5; index++) {
-            Timer += 1
+            basic.pause(1000)
         }
     }
 })
