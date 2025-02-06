@@ -52,6 +52,15 @@ states.addLoopHandler("EventShake", function () {
         }
     }
 })
+states.setEnterHandler("EventAB", function () {
+    basic.showLeds(`
+        . . . # .
+        . # . . #
+        # . # # .
+        # # # . #
+        # . # # .
+        `)
+})
 states.setEnterHandler("EventPick", function () {
     nextEvent = randint(1, 5)
     Timer = 0
@@ -69,6 +78,18 @@ states.setEnterHandler("EventPick", function () {
         states.setState("EventAB")
     } else {
         states.setState("EventError")
+    }
+})
+states.addLoopHandler("EventAB", function () {
+    while (input.buttonIsPressed(Button.AB)) {
+        states.setState("EventPick")
+    }
+    while (!(input.buttonIsPressed(Button.AB))) {
+        basic.pause(1000)
+        Timer += 1
+        if (Timer >= 5) {
+            states.setState("Death")
+        }
     }
 })
 states.setEnterHandler("EventPress", function () {
