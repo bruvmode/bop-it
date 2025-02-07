@@ -52,6 +52,39 @@ states.addLoopHandler("EventShake", function () {
         }
     }
 })
+states.addLoopHandler("EventTiltRight", function () {
+    while (input.isGesture(Gesture.TiltRight)) {
+        states.setState("EventPick")
+    }
+    while (!(input.isGesture(Gesture.TiltRight))) {
+        basic.pause(1000)
+        Timer += 1
+        if (Timer >= 5) {
+            states.setState("Death")
+        }
+    }
+})
+states.addLoopHandler("EventTiltLeft", function () {
+    while (input.isGesture(Gesture.TiltLeft)) {
+        states.setState("EventPick")
+    }
+    while (!(input.isGesture(Gesture.TiltLeft))) {
+        basic.pause(1000)
+        Timer += 1
+        if (Timer >= 5) {
+            states.setState("Death")
+        }
+    }
+})
+states.setEnterHandler("EventTiltLeft", function () {
+    basic.showLeds(`
+        . . # . .
+        . . . # .
+        # # # # #
+        . . . # .
+        . . # . .
+        `)
+})
 states.setEnterHandler("EventAB", function () {
     basic.showLeds(`
         . . . # .
@@ -61,8 +94,17 @@ states.setEnterHandler("EventAB", function () {
         # . # # .
         `)
 })
+states.setEnterHandler("EventTiltRight", function () {
+    basic.showLeds(`
+        . . # . .
+        . # . . .
+        # # # # #
+        . # . . .
+        . . # . .
+        `)
+})
 states.setEnterHandler("EventPick", function () {
-    nextEvent = randint(1, 5)
+    nextEvent = randint(1, 7)
     Timer = 0
     basic.clearScreen()
     basic.pause(1000)
@@ -76,6 +118,12 @@ states.setEnterHandler("EventPick", function () {
         states.setState("EventPress")
     } else if (nextEvent == 5) {
         states.setState("EventAB")
+    } else if (nextEvent == 6) {
+        states.setState("EventTiltLeft")
+    } else if (nextEvent == 7) {
+        states.setState("EventTiltRight")
+    } else if (false) {
+    	
     } else {
         states.setState("EventError")
     }
