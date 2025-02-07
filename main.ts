@@ -1,3 +1,6 @@
+states.setEnterHandler("Start", function () {
+    states.setState("EventPick")
+})
 states.addLoopHandler("EventB", function () {
     while (input.buttonIsPressed(Button.B)) {
         states.setState("EventPick")
@@ -124,6 +127,10 @@ states.setEnterHandler("EventTiltRight", function () {
         `)
 })
 states.setEnterHandler("EventPick", function () {
+    if (states.previousState() != "Start") {
+        game.addScore(1)
+        basic.showNumber(game.score())
+    }
     nextEvent = randint(1, 7)
     Timer = 0
     basic.pause(1000)
@@ -216,5 +223,5 @@ let nextEvent = 0
 let Timer = 0
 let TimerMax = 0
 TimerMax = 10
-states.setState("EventPick")
+states.setState("Start")
 states.debugOn(true)
