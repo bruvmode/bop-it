@@ -28,6 +28,29 @@ states.setEnterHandler("EventB", function () {
         . # # . .
         `)
 })
+states.setEnterHandler("EventTemplate", function () {
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        `)
+    while (true) {
+        let placeholder = 0
+        if (placeholder) {
+            states.setState("EventPick")
+            break;
+        } else {
+            basic.pause(1000)
+            Timer += 1
+            if (Timer >= TimerMax) {
+                states.setState("Death")
+                break;
+            }
+        }
+    }
+})
 states.addLoopHandler("EventShake", function () {
     while (input.isGesture(Gesture.Shake)) {
         states.setState("EventPick")
