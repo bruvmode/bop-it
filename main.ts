@@ -28,18 +28,6 @@ states.setEnterHandler("EventB", function () {
         . # # . .
         `)
 })
-states.addLoopHandler("EventPress", function () {
-    while (input.logoIsPressed()) {
-        states.setState("EventPick")
-    }
-    while (!(input.logoIsPressed())) {
-        basic.pause(1000)
-        Timer += 1
-        if (Timer >= TimerMax) {
-            states.setState("Death")
-        }
-    }
-})
 states.addLoopHandler("EventShake", function () {
     while (input.isGesture(Gesture.Shake)) {
         states.setState("EventPick")
@@ -148,6 +136,18 @@ states.setEnterHandler("EventPress", function () {
         . # . . .
         . # . . .
         `)
+    while (true) {
+        if (input.logoIsPressed()) {
+            states.setState("EventPick")
+            break;
+        } else {
+            basic.pause(1000)
+            Timer += 1
+            if (Timer >= TimerMax) {
+                states.setState("Death")
+            }
+        }
+    }
 })
 states.setEnterHandler("Death", function () {
     basic.showLeds(`
@@ -184,3 +184,4 @@ let Timer = 0
 let TimerMax = 0
 TimerMax = 10
 states.setState("EventPick")
+states.debugOn(true)
