@@ -5,7 +5,7 @@ states.addLoopHandler("EventB", function () {
     while (!(input.buttonIsPressed(Button.B))) {
         basic.pause(1000)
         Timer += 1
-        if (Timer >= 5) {
+        if (Timer >= TimerMax) {
             states.setState("Death")
         }
     }
@@ -35,7 +35,7 @@ states.addLoopHandler("EventPress", function () {
     while (!(input.logoIsPressed())) {
         basic.pause(1000)
         Timer += 1
-        if (Timer >= 5) {
+        if (Timer >= TimerMax) {
             states.setState("Death")
         }
     }
@@ -47,7 +47,7 @@ states.addLoopHandler("EventShake", function () {
     while (!(input.isGesture(Gesture.Shake))) {
         basic.pause(1000)
         Timer += 1
-        if (Timer >= 5) {
+        if (Timer >= TimerMax) {
             states.setState("Death")
         }
     }
@@ -59,7 +59,7 @@ states.addLoopHandler("EventTiltRight", function () {
     while (!(input.isGesture(Gesture.TiltRight))) {
         basic.pause(1000)
         Timer += 1
-        if (Timer >= 5) {
+        if (Timer >= TimerMax) {
             states.setState("Death")
         }
     }
@@ -71,7 +71,7 @@ states.addLoopHandler("EventTiltLeft", function () {
     while (!(input.isGesture(Gesture.TiltLeft))) {
         basic.pause(1000)
         Timer += 1
-        if (Timer >= 5) {
+        if (Timer >= TimerMax) {
             states.setState("Death")
         }
     }
@@ -106,7 +106,6 @@ states.setEnterHandler("EventTiltRight", function () {
 states.setEnterHandler("EventPick", function () {
     nextEvent = randint(1, 7)
     Timer = 0
-    basic.clearScreen()
     basic.pause(1000)
     if (nextEvent == 1) {
         states.setState("EventA")
@@ -127,6 +126,7 @@ states.setEnterHandler("EventPick", function () {
     } else {
         states.setState("EventError")
     }
+    basic.clearScreen()
 })
 states.addLoopHandler("EventAB", function () {
     while (input.buttonIsPressed(Button.AB)) {
@@ -135,7 +135,7 @@ states.addLoopHandler("EventAB", function () {
     while (!(input.buttonIsPressed(Button.AB))) {
         basic.pause(1000)
         Timer += 1
-        if (Timer >= 5) {
+        if (Timer >= TimerMax) {
             states.setState("Death")
         }
     }
@@ -174,11 +174,13 @@ states.addLoopHandler("EventA", function () {
     while (!(input.buttonIsPressed(Button.A))) {
         basic.pause(1000)
         Timer += 1
-        if (Timer >= 5) {
+        if (Timer >= TimerMax) {
             states.setState("Death")
         }
     }
 })
 let nextEvent = 0
 let Timer = 0
+let TimerMax = 0
+TimerMax = 10
 states.setState("EventPick")
