@@ -197,6 +197,7 @@ states.setEnterHandler("Death", function () {
         # # # # #
         . # . # .
         `)
+    basic.showNumber(game.score())
 })
 states.setEnterHandler("EventShake", function () {
     basic.showLeds(`
