@@ -19,6 +19,15 @@ states.setEnterHandler("EventA", function () {
         # . . . #
         `)
 })
+states.setEnterHandler("EventSpin", function () {
+    basic.showLeds(`
+        . # # . #
+        # . . # #
+        # . # # #
+        # . . . .
+        . # # # .
+        `)
+})
 states.setEnterHandler("EventB", function () {
     basic.showLeds(`
         . # # . .

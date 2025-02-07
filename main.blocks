@@ -40,6 +40,12 @@
         # # # # # 
         # # # # # 
         . # . # .
+        `</field></block></statement></block><block type="states_setEnterHandler" id="g]v2^^nM=K.I0$09P8g0" x="2494" y="933"><value name="selector"><shadow type="text" id="|?V^5Qhv4sLxX:n=NgUh"><field name="TEXT">EventSpin</field></shadow></value><statement name="HANDLER"><block type="device_show_leds" id="m;s[7-}TJkpMhbFTOPqA"><field name="LEDS">`
+        . # # . # 
+        # . . # # 
+        # . # # # 
+        # . . . . 
+        . # # # .
         `</field></block></statement></block><block type="states_setEnterHandler" id="b?n#2)Ic@jcn~Ar-fcE*" x="751" y="1091"><value name="selector"><shadow type="text" id="eG+QyoTIwU4up{8|+(Aj"><field name="TEXT">EventTemplate</field></shadow></value><statement name="HANDLER"><block type="device_show_leds" id="[IZ^7;ZXid5|{3`?P{f8"><field name="LEDS">`
         . . . . . 
         . . . . . 
