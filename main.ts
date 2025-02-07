@@ -145,6 +145,7 @@ states.setEnterHandler("EventPress", function () {
             Timer += 1
             if (Timer >= TimerMax) {
                 states.setState("Death")
+                break;
             }
         }
     }
