@@ -23,28 +23,6 @@ states.setEnterHandler("EventA", function () {
         }
     }
 })
-states.setEnterHandler("EventSpin", function () {
-    basic.showLeds(`
-        . . # . .
-        . # # # .
-        # . # . #
-        . . # . .
-        . . # . .
-        `)
-    while (true) {
-        if (input.isGesture(Gesture.LogoDown)) {
-            states.setState("EventPick")
-            break;
-        } else {
-            basic.pause(1000)
-            Timer += 1
-            if (Timer >= TimerMax) {
-                states.setState("Death")
-                break;
-            }
-        }
-    }
-})
 states.setEnterHandler("EventB", function () {
     basic.showLeds(`
         . # # . .
@@ -169,8 +147,12 @@ states.setEnterHandler("EventTiltRight", function () {
     }
 })
 states.setEnterHandler("EventPick", function () {
-    nextEvent = randint(1, 8)
+    nextEvent = randint(1, 9)
     Timer = 0
+    if (states.previousState() == "Start") {
+        game.addScore(1)
+        basic.showNumber(game.score())
+    }
     basic.pause(1000)
     if (nextEvent == 1) {
         states.setState("EventA")
@@ -187,7 +169,9 @@ states.setEnterHandler("EventPick", function () {
     } else if (nextEvent == 7) {
         states.setState("EventTiltRight")
     } else if (nextEvent == 8) {
-        states.setState("EventSpin")
+        states.setState("EventUp")
+    } else if (nextEvent == 9) {
+        states.setState("EventDown")
     } else {
         states.setState("EventError")
     }
@@ -244,6 +228,50 @@ states.setEnterHandler("EventShake", function () {
         `)
     while (true) {
         if (input.isGesture(Gesture.Shake)) {
+            states.setState("EventPick")
+            break;
+        } else {
+            basic.pause(1000)
+            Timer += 1
+            if (Timer >= TimerMax) {
+                states.setState("Death")
+                break;
+            }
+        }
+    }
+})
+states.setEnterHandler("EventDown", function () {
+    basic.showLeds(`
+        . . # . .
+        . . # . .
+        # . # . #
+        . # # # .
+        . . # . .
+        `)
+    while (true) {
+        if (input.isGesture(Gesture.LogoDown)) {
+            states.setState("EventPick")
+            break;
+        } else {
+            basic.pause(1000)
+            Timer += 1
+            if (Timer >= TimerMax) {
+                states.setState("Death")
+                break;
+            }
+        }
+    }
+})
+states.setEnterHandler("EventUp", function () {
+    basic.showLeds(`
+        . . # . .
+        . # # # .
+        # . # . #
+        . . # . .
+        . . # . .
+        `)
+    while (true) {
+        if (input.isGesture(Gesture.LogoUp)) {
             states.setState("EventPick")
             break;
         } else {
