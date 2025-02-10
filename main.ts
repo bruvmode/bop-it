@@ -170,8 +170,7 @@ states.setEnterHandler("EventTiltRight", function () {
 })
 states.setEnterHandler("EventPick", function () {
     if (states.previousState() != "Start") {
-        game.addScore(1)
-        basic.showNumber(game.score())
+    	
     }
     nextEvent = randint(1, 7)
     Timer = 0
@@ -190,8 +189,8 @@ states.setEnterHandler("EventPick", function () {
         states.setState("EventTiltLeft")
     } else if (nextEvent == 7) {
         states.setState("EventTiltRight")
-    } else if (false) {
-    	
+    } else if (nextEvent == 7) {
+        states.setState("EventSpin")
     } else {
         states.setState("EventError")
     }
