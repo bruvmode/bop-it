@@ -25,11 +25,11 @@ states.setEnterHandler("EventA", function () {
 })
 states.setEnterHandler("EventSpin", function () {
     basic.showLeds(`
-        . # # . #
-        # . . # #
-        # . # # #
-        # . . . .
+        . . # . .
         . # # # .
+        # . # . #
+        . . # . .
+        . . # . .
         `)
     while (true) {
         if (input.isGesture(Gesture.LogoDown)) {
@@ -169,10 +169,7 @@ states.setEnterHandler("EventTiltRight", function () {
     }
 })
 states.setEnterHandler("EventPick", function () {
-    if (states.previousState() != "Start") {
-    	
-    }
-    nextEvent = randint(1, 7)
+    nextEvent = randint(1, 8)
     Timer = 0
     basic.pause(1000)
     if (nextEvent == 1) {
@@ -189,7 +186,7 @@ states.setEnterHandler("EventPick", function () {
         states.setState("EventTiltLeft")
     } else if (nextEvent == 7) {
         states.setState("EventTiltRight")
-    } else if (nextEvent == 7) {
+    } else if (nextEvent == 8) {
         states.setState("EventSpin")
     } else {
         states.setState("EventError")
