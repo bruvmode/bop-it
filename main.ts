@@ -76,6 +76,7 @@ states.setEnterHandler("EventTemplate", function () {
         . . . . .
         `)
     while (true) {
+        let placeholder = 0
         if (placeholder) {
             states.setState("EventPick")
             break;
@@ -90,7 +91,7 @@ states.setEnterHandler("EventTemplate", function () {
     }
 })
 states.addLoopHandler("EventTiltLeft", function () {
-    while (input.isGesture(Gesture.TiltLeft)) {
+    while (true) {
         states.setState("EventPick")
     }
     while (!(input.isGesture(Gesture.TiltLeft))) {
@@ -110,7 +111,7 @@ states.setEnterHandler("EventTiltLeft", function () {
         . . # . .
         `)
     while (true) {
-        if (placeholder) {
+        if (input.isGesture(Gesture.TiltLeft)) {
             states.setState("EventPick")
             break;
         } else {
@@ -132,7 +133,7 @@ states.setEnterHandler("EventAB", function () {
         # . # # .
         `)
     while (true) {
-        if (placeholder) {
+        if (input.buttonIsPressed(Button.AB)) {
             states.setState("EventPick")
             break;
         } else {
@@ -195,18 +196,6 @@ states.setEnterHandler("EventPick", function () {
         states.setState("EventError")
     }
     basic.clearScreen()
-})
-states.addLoopHandler("EventAB", function () {
-    while (input.buttonIsPressed(Button.AB)) {
-        states.setState("EventPick")
-    }
-    while (!(input.buttonIsPressed(Button.AB))) {
-        basic.pause(1000)
-        Timer += 1
-        if (Timer >= TimerMax) {
-            states.setState("Death")
-        }
-    }
 })
 states.setEnterHandler("EventError", function () {
     basic.showLeds(`
@@ -272,7 +261,6 @@ states.setEnterHandler("EventShake", function () {
     }
 })
 let nextEvent = 0
-let placeholder = 0
 let Timer = 0
 let TimerMax = 0
 TimerMax = 10
