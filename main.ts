@@ -45,29 +45,6 @@ states.setEnterHandler("EventB", function () {
         }
     }
 })
-states.setEnterHandler("EventTemplate", function () {
-    basic.showLeds(`
-        . . . . .
-        . . . . .
-        . . . . .
-        . . . . .
-        . . . . .
-        `)
-    while (true) {
-        let placeholder = 0
-        if (placeholder) {
-            states.setState("EventPick")
-            break;
-        } else {
-            basic.pause(1000)
-            Timer += 1
-            if (Timer >= TimerMax) {
-                states.setState("Death")
-                break;
-            }
-        }
-    }
-})
 states.addLoopHandler("EventTiltLeft", function () {
     while (true) {
         states.setState("EventPick")
@@ -220,15 +197,6 @@ states.setEnterHandler("Setup", function () {
         }
     }
     states.setState("Start")
-})
-states.setEnterHandler("EventError", function () {
-    basic.showLeds(`
-        # # # # #
-        # . . . .
-        # # # # #
-        # . . . .
-        # # # # #
-        `)
 })
 states.setEnterHandler("EventPress", function () {
     basic.showLeds(`
