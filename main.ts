@@ -178,7 +178,7 @@ states.setEnterHandler("EventPick", function () {
     basic.clearScreen()
 })
 states.setEnterHandler("Setup", function () {
-    basic.showString("SET TIMER.")
+    basic.showString("SET TIMER")
     basic.showString("A")
     basic.showLeds(`
         . . # . .
