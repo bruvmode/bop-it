@@ -173,9 +173,43 @@ states.setEnterHandler("EventPick", function () {
     } else if (nextEvent == 9) {
         states.setState("EventDown")
     } else {
-        states.setState("EventError")
+    	
     }
     basic.clearScreen()
+})
+states.setEnterHandler("Setup", function () {
+    basic.showString("SET TIMER.")
+    basic.showString("A")
+    basic.showLeds(`
+        . . # . .
+        . . # . .
+        # . # . #
+        . # # # .
+        . . # . .
+        `)
+    basic.showString("B")
+    basic.showLeds(`
+        . . # . .
+        . # # # .
+        # . # . #
+        . . # . .
+        . . # . .
+        `)
+    basic.showString("PRESS LOGO TO CONFIRM")
+    basic.showNumber(TimerMax)
+    while (!(input.logoIsPressed())) {
+        if (input.buttonIsPressed(Button.A)) {
+            TimerMax += -1
+            basic.showNumber(TimerMax)
+            basic.pause(1000)
+        }
+        if (input.buttonIsPressed(Button.B)) {
+            TimerMax += 1
+            basic.showNumber(TimerMax)
+            basic.pause(1000)
+        }
+    }
+    states.setState("Start")
 })
 states.setEnterHandler("EventError", function () {
     basic.showLeds(`
@@ -217,6 +251,8 @@ states.setEnterHandler("Death", function () {
         . # . # .
         `)
     basic.showNumber(game.score())
+    game.setScore(0)
+    states.setState("Start")
 })
 states.setEnterHandler("EventShake", function () {
     basic.showLeds(`
@@ -287,6 +323,6 @@ states.setEnterHandler("EventUp", function () {
 let nextEvent = 0
 let Timer = 0
 let TimerMax = 0
-TimerMax = 10
-states.setState("Start")
-states.debugOn(true)
+TimerMax = 5
+states.setState("Setup")
+states.debugOn(false)
