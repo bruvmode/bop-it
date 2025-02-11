@@ -195,9 +195,16 @@ states.setEnterHandler("Setup", function () {
         . . # . .
         . . # . .
         `)
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        `)
     basic.showString("PRESS LOGO TO CONFIRM")
     basic.showNumber(TimerMax)
-    while (!(input.logoIsPressed())) {
+    while (true) {
         if (input.buttonIsPressed(Button.A)) {
             TimerMax += -1
             basic.showNumber(TimerMax)
@@ -207,6 +214,9 @@ states.setEnterHandler("Setup", function () {
             TimerMax += 1
             basic.showNumber(TimerMax)
             basic.pause(1000)
+            if (input.logoIsPressed()) {
+                break;
+            }
         }
     }
     states.setState("Start")
